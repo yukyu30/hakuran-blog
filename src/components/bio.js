@@ -36,20 +36,21 @@ const Bio = () => {
         className="bio-avatar"
         layout="fixed"
         formats={["auto", "webp", "avif"]}
-        src="../images/profile-pic.png"
+        src="https://s.gravatar.com/avatar/ecb04fa16f05ea11109632c00405fdbb?s=500"
         width={50}
         height={50}
         quality={95}
         alt="Profile picture"
       />
       {author?.name && (
-        <p>
-          Written by <strong>{author.name}</strong> {author?.summary || null}
+        <div>
+          <p><strong>{author.name}</strong></p>
+          <p>{author?.summary || null}</p>
           {` `}
           <a href={`https://twitter.com/${social?.twitter || ``}`}>
-            You should follow them on Twitter
+            Twitter
           </a>
-        </p>
+        </div>
       )}
     </div>
   )
