@@ -22,9 +22,12 @@ const BlogPostTemplate = ({
     } else {
       setShowBallon(false)
     }
-    console.log(selectedText)
+
   }
 
+  const handleClickSuzuri = (text) => {
+    console.log(text)
+  }
   return (
     <Layout location={location} title={siteTitle}>
       <article
@@ -42,7 +45,7 @@ const BlogPostTemplate = ({
           onMouseUp={() => handleSelectText()}
           onMouseOut={() => handleSelectText()}
         />
-        {showBalloon && (<button className="share" onClick={handleClick}>SUZURI</button>)}
+        {showBalloon && (<button className="share" onClick={() => handleClickSuzuri(shareText)}>SUZURI</button>)}
         <hr />
         <footer>
           <Bio />
