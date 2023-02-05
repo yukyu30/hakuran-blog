@@ -20,6 +20,7 @@ exports.handler = async function (event, context) {
       statusCode: 400,
       body: e
     }));
+  console.log(response)
   return {
     statusCode: response.statusCode,
     body: response.body
