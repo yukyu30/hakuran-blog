@@ -36,12 +36,9 @@ const BlogPostTemplate = ({
 
     const response = await axios.post(apiUrl, data, config)
       .then((res) => {
-        return {
-          statusCode: res.status,
-          body: JSON.stringify(res.data),
-        };
-      });
-    console.log(response.data)
+        console.log(res)
+      })
+
     window.location.href(response.data.products[0].sampleUrl)
   }
   return (
