@@ -1,7 +1,7 @@
 ---
 title: Tシャツについて500文字の文章で教えてください
-date: "2015-05-01T22:12:03.284Z"
-description: "Hello World"
+date: "2023-02-04"
+description: "what-is-t-shirts"
 ---
 
 ## 解答
