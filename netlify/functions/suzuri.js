@@ -13,21 +13,26 @@ exports.handler = async (event, context) => {
 
   const response = await axios.post(apiUrl, parmas, config)
     .then((res) => {
+      const data = {
+        status: res.status,
+        data: res.data,
+      };
       return {
         statusCode: res.status,
-        body: res.data.prodoucts[0]
-      }
+        body: JSON.stringify(data),
+      };
     })
     .catch((e) => {
+      const error = {
+        status: e.response.status,
+        data: e.response.data,
+      };
       return {
         statusCode: e.response.status,
-        body: e.response
-      }
+        body: JSON.stringify(error),
+      };
     });
   console.log(response)
 
-  return {
-    statusCode: response.statusCode,
-    body: JSON.stringify(response.body)
-  }
+  return response;
 };
