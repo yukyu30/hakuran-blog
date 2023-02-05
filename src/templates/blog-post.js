@@ -1,4 +1,4 @@
-import * as React from "react"
+import React, { useState } from 'react';
 import { Link, graphql } from "gatsby"
 
 import Bio from "../components/bio"
@@ -10,6 +10,20 @@ const BlogPostTemplate = ({
   location,
 }) => {
   const siteTitle = site.siteMetadata?.title || `Title`
+  const [showBalloon, setShowBallon] = useState(false);
+  const [shareText, setShareText] = useState("");
+
+  const handleSelectText = () => {
+    const selectedText = window.getSelection().toString()
+    const isSelected = selectedText.length > 0
+    if (isSelected) {
+      setShowBallon(true)
+      setShareText(selectedText)
+    } else {
+      setShowBallon(false)
+    }
+    console.log(selectedText)
+  }
 
   return (
     <Layout location={location} title={siteTitle}>
@@ -25,7 +39,10 @@ const BlogPostTemplate = ({
         <section
           dangerouslySetInnerHTML={{ __html: post.html }}
           itemProp="articleBody"
+          onMouseUp={() => handleSelectText()}
+          onMouseOut={() => handleSelectText()}
         />
+        {showBalloon && (<button className="share" onClick={handleClick}>SUZURI</button>)}
         <hr />
         <footer>
           <Bio />
