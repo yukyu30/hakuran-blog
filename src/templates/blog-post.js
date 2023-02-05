@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, graphql } from "gatsby"
-
+import axios from 'axios';
 import Bio from "../components/bio"
 import Layout from "../components/layout"
 import Seo from "../components/seo"
@@ -25,8 +25,23 @@ const BlogPostTemplate = ({
 
   }
 
-  const handleClickSuzuri = (text) => {
-    console.log(text)
+  const handleClickSuzuri = async () => {
+    const apiUrl = "https://sensational-puffpuff-0189ed.netlify.app/.netlify/functions/suzuri"
+    const config = {
+      headers: {
+        "Content-Type": "application/json"
+      },
+    };
+    const data = { "text": shareText }
+
+    const response = await axios.post(apiUrl, data, config)
+      .then((res) => {
+        return {
+          statusCode: res.status,
+          body: JSON.stringify(res.data),
+        };
+      });
+    window.location.href(response.data.products[0].sampleUrl)
   }
   return (
     <Layout location={location} title={siteTitle}>
