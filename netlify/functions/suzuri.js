@@ -8,22 +8,25 @@ exports.handler = async (event, context) => {
       "Content-Type": "application/json"
     },
   };
-  const parmas = new URLSearchParams
-  parmas.append("text", "this is test")
+  const parmas = new URLSearchParams;
+  parmas.append("text", "this is test");
 
-  const response = axios.post(apiUrl, parmas, config)
-    .then((res) => ({
-      statusCode: res.status,
-      body: JSON.stringify(res.data)
-    }))
-    .catch((e) => ({
-      statusCode: e.response.status,
-      body: JSON.stringify(e.response)
-    }));
-  console.log(response)
+  try {
+    const response = await axios.post(apiUrl, parmas, config);
 
-  return {
-    statusCode: response.statusCode,
-    body: response.body
+    if (response.status >= 200 && response.status < 300) {
+      return {
+        statusCode: response.status,
+        body: JSON.stringify(response.data)
+      };
+    } else {
+      throw new Error(`Invalid status code: ${response.status}`);
+    }
+  } catch (e) {
+    console.error(e);
+    return {
+      statusCode: 500,
+      body: JSON.stringify({ error: e.message })
+    };
   }
 };
