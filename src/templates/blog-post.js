@@ -36,10 +36,9 @@ const BlogPostTemplate = ({
 
     const response = await axios.post(apiUrl, data, config)
       .then((res) => {
-        console.log(res)
       })
-
-    window.location.href(response.data.products[0].sampleUrl)
+    console.log(response)
+    window.location.href(response.data.data.products[0].sampleUrl)
   }
   return (
     <Layout location={location} title={siteTitle}>
