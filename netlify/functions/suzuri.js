@@ -15,7 +15,7 @@ exports.handler = async (event, context) => {
     .then((res) => {
       return {
         statusCode: res.status,
-        body: res.data.prodoucts[0].sampleUrl
+        body: res.data.prodoucts[0]
       }
     })
     .catch((e) => {
@@ -28,6 +28,6 @@ exports.handler = async (event, context) => {
 
   return {
     statusCode: response.statusCode,
-    body: response.body
+    body: JSON.stringify(response.body)
   }
 };
