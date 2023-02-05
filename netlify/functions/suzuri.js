@@ -9,7 +9,7 @@ exports.handler = async (event, context) => {
     },
   };
 
-  const data = { text: event.body.text }
+  const data = { "text": JSON.parse(event.body).text }
 
   const response = await axios.post(apiUrl, data, config)
     .then((res) => {
