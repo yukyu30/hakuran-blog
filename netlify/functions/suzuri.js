@@ -8,10 +8,10 @@ exports.handler = async (event, context) => {
       "Content-Type": "application/json"
     },
   };
-  const parmas = new URLSearchParams
-  parmas.append("text", "this is test")
 
-  const response = await axios.post(apiUrl, parmas, config)
+  const data = { text: "this is test" }
+
+  const response = await axios.post(apiUrl, data, config)
     .then((res) => {
       const data = {
         status: res.status,
