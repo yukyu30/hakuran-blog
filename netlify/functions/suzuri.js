@@ -12,14 +12,18 @@ exports.handler = async (event, context) => {
   parmas.append("text", "this is test")
 
   const response = await axios.post(apiUrl, parmas, config)
-    .then((res) => ({
-      statusCode: res.status,
-      body: JSON.stringify(res.data)
-    }))
-    .catch((e) => ({
-      statusCode: e.response.status,
-      body: JSON.stringify(e.response)
-    }));
+    .then((res) => {
+      return {
+        statusCode: res.status,
+        body: res.data.prodoucts[0].sampleUrl
+      }
+    })
+    .catch((e) => {
+      return {
+        statusCode: e.response.status,
+        body: e.response
+      }
+    });
   console.log(response)
 
   return {
