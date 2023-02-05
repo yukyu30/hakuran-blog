@@ -41,6 +41,7 @@ const BlogPostTemplate = ({
           body: JSON.stringify(res.data),
         };
       });
+    console.log(response.data)
     window.location.href(response.data.products[0].sampleUrl)
   }
   return (
