@@ -10,17 +10,17 @@ const BlogPostTemplate = ({
   location,
 }) => {
   const siteTitle = site.siteMetadata?.title || `Title`
-  const [showBalloon, setShowBallon] = useState(false)
+  const [showButton, setShowButtn] = useState(false)
   const [shareText, setShareText] = useState("")
 
   const handleSelectText = () => {
     const selectedText = window.getSelection().toString()
     const isSelected = selectedText.length > 0
     if (isSelected) {
-      setShowBallon(true)
+      setShowButton(true)
       setShareText(selectedText)
     } else {
-      setShowBallon(false)
+      setShowButton(false)
     }
 
   }
@@ -32,7 +32,7 @@ const BlogPostTemplate = ({
         "Content-Type": "application/json"
       },
     }
-    const data = JSON.stringify({ "text": shareText })
+    const data = { "text": shareText }
 
     const response = await axios.post(apiUrl, data, config)
       .then((res) => {
@@ -56,7 +56,7 @@ const BlogPostTemplate = ({
           onMouseUp={() => handleSelectText()}
           onMouseOut={() => handleSelectText()}
         />
-        {showBalloon && (<button className="share" onClick={() => handleClickSuzuri(shareText)}>SUZURI</button>)}
+        {showButton && (<button className="share" onClick={() => handleClickSuzuri(shareText)}>SUZURI</button>)}
         <hr />
         <footer>
           <Bio />

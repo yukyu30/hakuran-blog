@@ -1,4 +1,4 @@
-const axios = require('axios');
+const axios = require('axios')
 
 exports.handler = async (event, context) => {
   const apiUrl = "https://suzuri.jp/api/v1/materials/text"
@@ -27,4 +27,4 @@ exports.handler = async (event, context) => {
   console.log(response)
 
   return response;
-};
+}
