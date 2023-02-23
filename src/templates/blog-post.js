@@ -10,8 +10,8 @@ const BlogPostTemplate = ({
   location,
 }) => {
   const siteTitle = site.siteMetadata?.title || `Title`
-  const [showBalloon, setShowBallon] = useState(false);
-  const [shareText, setShareText] = useState("");
+  const [showBalloon, setShowBallon] = useState(false)
+  const [shareText, setShareText] = useState("")
 
   const handleSelectText = () => {
     const selectedText = window.getSelection().toString()
@@ -31,8 +31,8 @@ const BlogPostTemplate = ({
       headers: {
         "Content-Type": "application/json"
       },
-    };
-    const data = { "text": shareText }
+    }
+    const data = JSON.stringify({ "text": shareText })
 
     const response = await axios.post(apiUrl, data, config)
       .then((res) => {
