@@ -10,7 +10,7 @@ const BlogPostTemplate = ({
   location,
 }) => {
   const siteTitle = site.siteMetadata?.title || `Title`
-  const [showButton, setShowButtn] = useState(false)
+  const [showButton, setShowButton] = useState(false)
   const [shareText, setShareText] = useState("")
 
   const handleSelectText = () => {
